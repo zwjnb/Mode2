@@ -51,7 +51,8 @@ dependencies {
     implementation rootProject.androidx.navigationUiKtx
     implementation rootProject.androidx.ARounter
     kapt rootProject.androidx.ARountercompiler
-    implementation rootProject.androidx.rvadapter
+
+    implementation rootProject.androidx.multidex
     testImplementation rootProject.androidx.junit
     androidTestImplementation rootProject.androidx.extjunit
     androidTestImplementation rootProject.androidx.espressoCore

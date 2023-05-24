@@ -32,18 +32,28 @@ ext{
             immersionbar: 'com.geyifeng.immersionbar:immersionbar:3.2.2',
             // kotlin扩展（可选）
             immersionbarKtx:'com.geyifeng.immersionbar:immersionbar-ktx:3.2.2',
+            //下载监听框架
+            progressmanager: 'me.jessyan:progressmanager:1.5.0',
             //图片加载
             glide : 'com.github.bumptech.glide:glide:4.15.1',
             glideCompiler :'com.github.bumptech.glide:compiler:4.15.1',
             //腾讯X5
             tbssdk  : "com.tencent.tbs:tbssdk:44132",
+            //网络请求
+            retrofit2         : "com.squareup.retrofit2:retrofit:2.9.0",
+            retrofit2Gson     : "com.squareup.retrofit2:converter-gson:2.4.0",
+            //日志打印
+            loggingInterceptor: "com.squareup.okhttp3:logging-interceptor:3.11.0",
+
             gson    : "com.google.code.gson:gson:2.10.1",
             //下拉刷新
             refreshLayout     : "io.github.scwang90:refresh-layout-kernel:2.0.5",
             refreshHeader     : "io.github.scwang90:refresh-header-classics:2.0.5",
             refreshFooter     : "io.github.scwang90:refresh-footer-classics:2.0.5",
-            //万能adapter
-            rvadapter : 'com.zhy:base-rvadapter:3.0.3',
+//            //万能adapter
+//            rvadapter : 'com.zhy:base-rvadapter:3.0.3',
+            multidex          : "androidx.multidex:multidex:2.0.1",
+
     ]
 
 }

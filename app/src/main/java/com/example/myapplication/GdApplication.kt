@@ -2,10 +2,11 @@ package com.example.myapplication
 
 import android.app.Application
 import android.os.Build
+import androidx.multidex.BuildConfig
+import androidx.multidex.MultiDexApplication
 import com.alibaba.android.arouter.launcher.ARouter
-import com.ceshi.demo.BuildConfig
 
-class GdApplication :Application() {
+class GdApplication :MultiDexApplication() {
     override fun onCreate() {
         super.onCreate()
         if (BuildConfig.DEBUG){
