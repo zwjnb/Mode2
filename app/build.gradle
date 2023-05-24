@@ -1,0 +1,59 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+}
+
+android {
+    namespace rootProject.android.applicationId
+    compileSdk 33
+
+    defaultConfig {
+        applicationId rootProject.android.applicationId
+        minSdk 24
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+        //ARouter
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility rootProject.compileOptions.sourceCompatibility
+        targetCompatibility rootProject.compileOptions.targetCompatibility
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+
+    implementation rootProject.androidx.coreKtx
+    implementation rootProject.androidx.appcompat
+    implementation rootProject.androidx.material
+    implementation rootProject.androidx.constraintlayout
+    implementation rootProject.androidx.navigationFragmentKtx
+    implementation rootProject.androidx.navigationUiKtx
+    implementation rootProject.androidx.ARounter
+    kapt rootProject.androidx.ARountercompiler
+    testImplementation rootProject.androidx.junit
+    androidTestImplementation rootProject.androidx.extjunit
+    androidTestImplementation rootProject.androidx.espressoCore
+    implementation project(path: ':lib_util')
+    implementation project(path: ':lib_main')
+}
