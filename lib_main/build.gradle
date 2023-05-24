@@ -46,6 +46,8 @@ dependencies {
     implementation rootProject.androidx.navigationFragmentKtx
     implementation rootProject.androidx.navigationUiKtx
     implementation rootProject.androidx.ARounter
+    implementation rootProject.androidx.immersionbar
+    implementation rootProject.androidx.immersionbarKtx
     kapt rootProject.androidx.ARountercompiler
 
     testImplementation rootProject.androidx.junit

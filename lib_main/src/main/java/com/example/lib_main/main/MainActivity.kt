@@ -7,10 +7,9 @@ import com.example.lib_main.base.ARouteManage
 import com.example.lib_main.base.BaseActivity
 @Route(path=ARouteManage.mainActivity)
 class MainActivity:BaseActivity() {
-    override fun getLayoutResId(): Int {
-        return R.layout.activity_main
-    }
-
     override fun initView(savedInstanceState: Bundle?) {
+        setContentLayout(R.layout.activity_main)
+        setLeftBack()
+        setTitle("首页")
     }
 }

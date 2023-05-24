@@ -25,7 +25,12 @@ ext{
             espressoCore: 'androidx.test.espresso:espresso-core:3.4.0',
             ARounter: 'com.alibaba:arouter-api:1.5.2',
             ARountercompiler: 'com.alibaba:arouter-compiler:1.5.2',
-            kotlinExtensions: "org.jetbrains.kotlin:kotlin-android-extensions:1.8.0"
+            kotlinExtensions: "org.jetbrains.kotlin:kotlin-android-extensions:1.8.0",
+            //沉浸式状态栏 https://github.com/gyf-dev/ImmersionBar
+            // 基础依赖包，必须要依赖
+            immersionbar: 'com.geyifeng.immersionbar:immersionbar:3.2.2',
+            // kotlin扩展（可选）
+            immersionbarKtx:'com.geyifeng.immersionbar:immersionbar-ktx:3.2.2'
     ]
 
 }

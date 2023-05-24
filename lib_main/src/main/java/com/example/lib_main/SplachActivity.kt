@@ -2,6 +2,7 @@ package com.example.lib_main
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import androidx.lifecycle.lifecycleScope
 import com.example.lib_main.base.ARouteManage
@@ -13,13 +14,16 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class SplachActivity:BaseActivity() {
-    override fun getLayoutResId(): Int {
-        return R.layout.activity_splach
-    }
+
 
     override fun initView(savedInstanceState: Bundle?) {
+        setContentLayout(R.layout.activity_splach)
+        setToolbar(false)
+        setFitsSystemWindows(false)
         window.setBackgroundDrawable(null)
+
      var button=findViewById<Button>(R.id.button)
+
      //倒计时
      DownTimer.downTimer(3, start = {
          button.setText("3秒")
