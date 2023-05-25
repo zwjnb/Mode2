@@ -68,7 +68,7 @@
     <dimen name="dp_32">32dp</dimen>
     <dimen name="dp_32.5">32.5dp</dimen>
     <dimen name="dp_33">33dp</dimen>
-    <dimen name="dp_33.5">33.5dp</dimen>
+    <dimen name="dp_33.5">32.5dp</dimen>
     <dimen name="dp_34">34dp</dimen>
     <dimen name="dp_34.5">34.5dp</dimen>
     <dimen name="dp_35">35dp</dimen>

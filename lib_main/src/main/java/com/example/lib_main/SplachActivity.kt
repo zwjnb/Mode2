@@ -25,8 +25,8 @@ class SplachActivity:BaseActivity() {
      var button=findViewById<Button>(R.id.button)
 
      //倒计时
-     DownTimer.downTimer(3, start = {
-         button.setText("3秒")
+     DownTimer.downTimer(1, start = {
+         button.setText("1秒")
      }, completion = {
          button.setText("0秒")
          ARouteManage.IntentMain()

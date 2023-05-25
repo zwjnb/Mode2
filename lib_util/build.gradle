@@ -5,11 +5,11 @@ plugins {
 
 android {
     namespace 'com.example.lib_util'
-    compileSdk 33
+    compileSdk 32
 
     defaultConfig {
         minSdk 24
-        targetSdk 33
+        targetSdk 32
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -45,4 +45,9 @@ dependencies {
     implementation rootProject.androidx.retrofit2Gson
     implementation rootProject.androidx.loggingInterceptor
     implementation rootProject.androidx.gson
+    implementation rootProject.androidx.coroutinesCore
+    implementation rootProject.androidx.coroutinesAndroid
+    implementation rootProject.androidx.viewmodel
+    implementation rootProject.androidx.XXPermissions
+
 }

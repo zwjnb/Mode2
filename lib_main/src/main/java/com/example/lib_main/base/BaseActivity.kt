@@ -21,7 +21,7 @@ import com.gyf.immersionbar.ImmersionBar
 
 /**
  * Author mingyan.su
- * Time   2023/2/20 12:33
+ * Time   2023/2/20 12:32
  * Desc   Activity基类
  */
 abstract class BaseActivity : AppCompatActivity() {

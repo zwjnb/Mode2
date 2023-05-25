@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true">
 <ImageView
     android:id="@+id/imgView"
@@ -10,4 +11,12 @@
     android:layout_height="wrap_content"
     tools:ignore="MissingConstraints"
     />
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="app下载并安装"
+        app:layout_constraintTop_toBottomOf="@+id/imgView"
+        app:layout_constraintLeft_toLeftOf="parent"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

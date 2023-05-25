@@ -6,11 +6,11 @@ plugins {
 
 android {
     namespace 'com.example.lib_main'
-    compileSdk 33
+    compileSdk 32
 
     defaultConfig {
         minSdk 24
-        targetSdk 33
+        targetSdk 32
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -45,11 +45,14 @@ dependencies {
     implementation rootProject.androidx.constraintlayout
     implementation rootProject.androidx.navigationFragmentKtx
     implementation rootProject.androidx.navigationUiKtx
-    implementation rootProject.androidx.progressmanager
+//    implementation rootProject.androidx.progressmanager
     implementation rootProject.androidx.ARounter
     implementation rootProject.androidx.immersionbar
     implementation rootProject.androidx.immersionbarKtx
     kapt rootProject.androidx.ARountercompiler
+    implementation rootProject.androidx.coroutinesCore
+    implementation rootProject.androidx.coroutinesAndroid
+    implementation rootProject.androidx.viewmodel
     testImplementation rootProject.androidx.junit
     androidTestImplementation rootProject.androidx.extjunit
     androidTestImplementation rootProject.androidx.espressoCore
