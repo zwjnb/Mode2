@@ -22,6 +22,7 @@ import com.luck.picture.lib.interfaces.OnResultCallbackListener
 import com.luck.picture.lib.utils.MediaUtils
 import com.sum.glide.GlideEngine
 import com.sum.glide.ImageFileCropEngine
+import com.sum.glide.MeOnSelectLimitTipsListener
 import com.sum.glide.setUrl
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.collect
@@ -45,7 +46,8 @@ class MainActivity:BaseActivity() {
         PictureSelector.create(this)
             .openGallery(SelectMimeType.ofImage())
             .setImageEngine(GlideEngine.createGlideEngine())
-            .setCropEngine(ImageFileCropEngine(false))
+            .setCropEngine(ImageFileCropEngine(false))//图片剪裁
+            .setSelectLimitTipsListener( MeOnSelectLimitTipsListener())//拦截自定义提示
             .forResult(object : OnResultCallbackListener<LocalMedia?> {
                 override fun onResult(result: ArrayList<LocalMedia?>?) {
                     analyticalSelectResults(result)

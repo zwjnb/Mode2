@@ -10,9 +10,13 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
+import com.luck.picture.lib.config.SelectLimitType
+import com.luck.picture.lib.config.SelectorConfig
 import com.luck.picture.lib.engine.CropFileEngine
+import com.luck.picture.lib.entity.LocalMedia
+import com.luck.picture.lib.interfaces.OnSelectLimitTipsListener
+import com.luck.picture.lib.utils.ToastUtils
 import com.yalantis.ucrop.UCrop
-import java.security.AccessController.getContext
 
 class ImageFileCropEngine: CropFileEngine {
     var isCheckCircle:Boolean?=null//是否支持圆形剪裁
@@ -24,7 +28,7 @@ class ImageFileCropEngine: CropFileEngine {
         srcUri: Uri?,
         destinationUri: Uri?,
         dataSource: ArrayList<String>?,
-        requestCode: Int
+        requestCode: Int,
     ) {
         val options: UCrop.Options = buildOptions(fragment!!)
         val uCrop: UCrop = UCrop.of(srcUri!!, destinationUri!!, dataSource!!)
@@ -123,4 +127,6 @@ class ImageFileCropEngine: CropFileEngine {
 //        }
         return options
     }
+
+
 }
