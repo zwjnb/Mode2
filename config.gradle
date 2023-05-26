@@ -2,7 +2,7 @@ ext{
     android=[
             applicationId:"com.ceshi.demo",
             minSdk:24,
-            targetSdk:32,
+            targetSdk:33,
             versionCode:1,
             versionName:"1.0",
     ]
@@ -60,6 +60,15 @@ ext{
             viewmodel: 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0',
             // 权限请求框架：https://github.com/getActivity/XXPermissions
             XXPermissions: 'com.github.getActivity:XXPermissions:18.2',
+            xutils: 'org.xutils:xutils:3.8.12',
+            // PictureSelector 基础 (必须) https://github.com/LuckSiege/PictureSelector
+            pictureselector: 'io.github.lucksiege:pictureselector:v3.11.1',
+            // 图片压缩 (按需引入)
+            compress: 'io.github.lucksiege:compress:v3.11.1',
+            // 图片裁剪 (按需引入)
+            ucrop: 'io.github.lucksiege:ucrop:v3.11.1',
+            // 自定义相机 (按需引入)
+            camerax: 'io.github.lucksiege:camerax:v3.11.1',
 
     ]
 

@@ -6,11 +6,11 @@ plugins {
 
 android {
     namespace 'com.example.lib_main'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         minSdk 24
-        targetSdk 32
+        targetSdk 33
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -53,9 +53,17 @@ dependencies {
     implementation rootProject.androidx.coroutinesCore
     implementation rootProject.androidx.coroutinesAndroid
     implementation rootProject.androidx.viewmodel
+    implementation rootProject.androidx.glide
+    kapt rootProject.androidx.glideCompiler
+    implementation rootProject.androidx.pictureselector
+    implementation rootProject.androidx.compress
+    implementation rootProject.androidx.ucrop
+    implementation rootProject.androidx.camerax
     testImplementation rootProject.androidx.junit
     androidTestImplementation rootProject.androidx.extjunit
     androidTestImplementation rootProject.androidx.espressoCore
+    implementation rootProject.androidx.XXPermissions
     implementation project(path: ':lib_util')
     implementation project(path: ':lib_glide')
+
 }

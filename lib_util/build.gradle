@@ -5,11 +5,11 @@ plugins {
 
 android {
     namespace 'com.example.lib_util'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         minSdk 24
-        targetSdk 32
+        targetSdk 33
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -49,5 +49,12 @@ dependencies {
     implementation rootProject.androidx.coroutinesAndroid
     implementation rootProject.androidx.viewmodel
     implementation rootProject.androidx.XXPermissions
+//    //图片选择、剪裁框架
+//    // -------------------- 以下3个库是必须依赖的 ----------------------------
+//    implementation rootProject.androidx.BGAPhotoPicker
+//    implementation rootProject.androidx.legacy
+//    implementation rootProject.androidx.BGABaseAdapter
+//    // -------------------- 以上3个库是必须依赖的 ----------------------------
+
 
 }
