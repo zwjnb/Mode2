@@ -17,6 +17,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import com.example.lib_main.R
 import com.gyf.immersionbar.ImmersionBar
+import com.jingewenku.abrahamcaijin.commonutil.application.AppUtils
 
 
 /**
@@ -39,6 +40,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AppUtils.init(context)
         //沉浸式状态栏
         //原理：如果当前设备支持状态栏字体变色，会设置状态栏字体为黑色，如果当前设备不支持状态栏字体变色，会使当前状态栏加上透明度，否则不执行透明度
         ImmersionBar.with(this).statusBarDarkFont(true, 0.2f)          .init();

@@ -4,8 +4,10 @@ import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
+import android.view.KeyEvent
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.lib_main.R
@@ -14,16 +16,11 @@ import com.example.lib_main.base.BaseActivity
 import com.example.lib_util.down.DownloadGO
 import com.example.lib_util.down.DownloadStatus
 import com.example.lib_util.log.LogUtil
-import com.luck.picture.lib.basic.PictureSelector
+import com.jingewenku.abrahamcaijin.commonutil.AppExit2Back
+import com.jingewenku.abrahamcaijin.commonutil.AppToastMgr
 import com.luck.picture.lib.config.PictureMimeType
-import com.luck.picture.lib.config.SelectMimeType
 import com.luck.picture.lib.entity.LocalMedia
-import com.luck.picture.lib.interfaces.OnResultCallbackListener
 import com.luck.picture.lib.utils.MediaUtils
-import com.sum.glide.GlideEngine
-import com.sum.glide.ImageFileCropEngine
-import com.sum.glide.MeOnSelectLimitTipsListener
-import com.sum.glide.setUrl
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -43,19 +40,35 @@ class MainActivity:BaseActivity() {
         button.setOnClickListener {
             download(this)
         }
-        PictureSelector.create(this)
-            .openGallery(SelectMimeType.ofImage())
-            .setImageEngine(GlideEngine.createGlideEngine())
-            .setCropEngine(ImageFileCropEngine(false))//图片剪裁
-            .setSelectLimitTipsListener( MeOnSelectLimitTipsListener())//拦截自定义提示
-            .forResult(object : OnResultCallbackListener<LocalMedia?> {
-                override fun onResult(result: ArrayList<LocalMedia?>?) {
-                    analyticalSelectResults(result)
-                }
-                override fun onCancel() {}
-            })
+        AppToastMgr.ToastShortCenter(context,"55555555555555")
+//        PictureSelector.create(this)
+//            .openGallery(SelectMimeType.ofImage())
+//            .setImageEngine(GlideEngine.createGlideEngine())
+//            .setCropEngine(ImageFileCropEngine(false))//图片剪裁
+//            .setSelectLimitTipsListener( MeOnSelectLimitTipsListener())//拦截自定义提示
+//            .forResult(object : OnResultCallbackListener<LocalMedia?> {
+//                override fun onResult(result: ArrayList<LocalMedia?>?) {
+//                    analyticalSelectResults(result)
+//                }
+//                override fun onCancel() {
+//
+//                }
+//            })
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+
+    }
+
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() === 0) { //按下的如果是BACK，同时没有重复
+            AppExit2Back.exitApp(context)
+            return true
+        }
+        return super.onKeyDown(keyCode, event)
+    }
     /**
      * 处理选择结果
      *

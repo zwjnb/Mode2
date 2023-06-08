@@ -12,6 +12,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/lib_CommonUtil" />
             <option value="$PROJECT_DIR$/lib_framework" />
             <option value="$PROJECT_DIR$/lib_glide" />
             <option value="$PROJECT_DIR$/lib_main" />

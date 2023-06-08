@@ -60,7 +60,7 @@ ext{
             viewmodel: 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0',
             // 权限请求框架：https://github.com/getActivity/XXPermissions
             XXPermissions: 'com.github.getActivity:XXPermissions:18.2',
-            xutils: 'org.xutils:xutils:3.8.12',
+            xutils: 'com.github.lazylibrary:lazylibrary:1.0.2',
             // PictureSelector 基础 (必须) https://github.com/LuckSiege/PictureSelector
             pictureselector: 'io.github.lucksiege:pictureselector:v3.11.1',
             // 图片压缩 (按需引入)

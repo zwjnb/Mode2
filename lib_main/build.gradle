@@ -63,7 +63,8 @@ dependencies {
     androidTestImplementation rootProject.androidx.extjunit
     androidTestImplementation rootProject.androidx.espressoCore
     implementation rootProject.androidx.XXPermissions
+//    implementation rootProject.androidx.xutils
     implementation project(path: ':lib_util')
     implementation project(path: ':lib_glide')
-
+    implementation project(path: ':lib_CommonUtil')
 }

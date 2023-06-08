@@ -30,6 +30,7 @@ class ImageFileCropEngine: CropFileEngine {
         dataSource: ArrayList<String>?,
         requestCode: Int,
     ) {
+
         val options: UCrop.Options = buildOptions(fragment!!)
         val uCrop: UCrop = UCrop.of(srcUri!!, destinationUri!!, dataSource!!)
         uCrop.withOptions(options)

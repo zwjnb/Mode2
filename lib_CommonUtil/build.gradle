@@ -1,0 +1,84 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+//-------------------------上传到jcenter-----------------------
+
+android {
+    compileSdkVersion 33
+
+    defaultConfig {
+        minSdkVersion 24
+        targetSdkVersion 33
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    implementation rootProject.androidx.coreKtx
+    implementation rootProject.androidx.appcompat
+    implementation rootProject.androidx.material
+    implementation rootProject.androidx.constraintlayout
+    implementation rootProject.androidx.navigationFragmentKtx
+    implementation rootProject.androidx.navigationUiKtx
+    testImplementation rootProject.androidx.junit
+    androidTestImplementation rootProject.androidx.extjunit
+    androidTestImplementation rootProject.androidx.espressoCore
+    //Glide图片加载
+    implementation rootProject.androidx.glide
+    //gson
+    implementation rootProject.androidx.gson
+    //编码工具类用到
+    implementation files('libs/BASE64Decoder.jar')
+    //Webservice网络工具类用到
+    implementation files('libs/ksoap2-android-assembly-3.3.0-jar-with-dependencies.jar')
+}
+//-------------------------上传到jcenter-----------------------
+
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+task javadoc(type: Javadoc) {
+    options {
+        encoding "UTF-8"
+        charSet 'UTF-8'
+        author true
+        version true
+        failOnError false
+        links "http://docs.oracle.com/javase/7/docs/api"
+    }
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+Properties properties = new Properties()
+properties.load(project.file('local.properties').newDataInputStream())
