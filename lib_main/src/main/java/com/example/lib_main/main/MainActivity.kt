@@ -21,8 +21,9 @@ import com.jingewenku.abrahamcaijin.commonutil.AppToastMgr
 import com.luck.picture.lib.config.PictureMimeType
 import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.utils.MediaUtils
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.InternalCoroutinesApi
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import java.io.File
 
@@ -54,6 +55,15 @@ class MainActivity:BaseActivity() {
 //
 //                }
 //            })
+   lifecycleScope.launch {
+       flow<String> {
+           emit("1")
+       }.flowOn(Dispatchers.IO)
+           .onCompletion {  }
+           .onStart {  }
+           .collect {
+       }
+   }
     }
 
     override fun onDestroy() {
