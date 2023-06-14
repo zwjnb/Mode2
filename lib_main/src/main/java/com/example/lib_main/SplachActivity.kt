@@ -2,11 +2,13 @@ package com.example.lib_main
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import androidx.lifecycle.lifecycleScope
 import com.example.lib_main.base.ARouteManage
 import com.example.lib_main.base.BaseActivity
+import com.example.lib_main.databinding.ActivitySplachBinding
 import com.example.lib_util.DownTimer
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -17,12 +19,13 @@ class SplachActivity:BaseActivity() {
 
 
     override fun initView(savedInstanceState: Bundle?) {
-        setContentLayout(R.layout.activity_splach)
+      var rootView=  ActivitySplachBinding.inflate(LayoutInflater.from(context))
+        setContentLayout(rootView.root)
         setToolbar(false)
         setFitsSystemWindows(false)
         window.setBackgroundDrawable(null)
 
-     var button=findViewById<Button>(R.id.button)
+     var button=rootView.button
 
      //倒计时
      DownTimer.downTimer(1, start = {

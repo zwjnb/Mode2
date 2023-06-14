@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import com.example.lib_main.R
+import com.example.lib_main.databinding.ActivityToorbarBinding
 import com.gyf.immersionbar.ImmersionBar
 import com.jingewenku.abrahamcaijin.commonutil.application.AppUtils
 
@@ -32,7 +33,7 @@ abstract class BaseActivity : AppCompatActivity() {
     var inflater:LayoutInflater?=null
     var frame_layout:FrameLayout?=null
     var toolbar: ConstraintLayout?=null
-    var ImageBack:ImageView?=null
+    var imageBack:ImageView?=null
     var toolbarTitle:TextView?=null
 //    private val dialogUtils by lazy {
 //        LoadingUtils(this)
@@ -56,18 +57,17 @@ abstract class BaseActivity : AppCompatActivity() {
     /**
      * 设置布局
      */
-    open fun setContentLayout(layoutID:Int) {
+    open fun setContentLayout(childView:View) {
         if (inflater==null) {
             inflater = LayoutInflater.from(context)
         }
-        inflater?.inflate(R.layout.activity_toorbar,layout)
-        frame_layout=findViewById<FrameLayout>(R.id.frame_layout)
-        toolbar=findViewById<ConstraintLayout>(R.id.toolbar)
-        toolbarTitle=findViewById<TextView>(R.id.title)
-        ImageBack=findViewById<ImageView>(R.id.img_back)
+        var rootView= ActivityToorbarBinding.inflate(LayoutInflater.from(context),layout,true)
+        frame_layout=rootView.frameLayout
+        toolbar=rootView.toolbar
+        toolbarTitle=rootView.title
+        imageBack=rootView.imgBack
         //添加子布局
-        if (layoutID!=0) {
-          var childView=  inflater?.inflate(layoutID,null)
+        if (childView!=null) {
           frame_layout?.addView(childView)
         }
     }
@@ -98,7 +98,7 @@ abstract class BaseActivity : AppCompatActivity() {
      * 设置左返回按钮点击事件
      */
     open fun setLeftBack(){
-     ImageBack?.setOnClickListener {
+     imageBack?.setOnClickListener {
          finish()
      }
  }

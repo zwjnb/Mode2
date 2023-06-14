@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.view.KeyEvent
+import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
@@ -13,6 +14,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.lib_main.R
 import com.example.lib_main.base.ARouteManage
 import com.example.lib_main.base.BaseActivity
+import com.example.lib_main.databinding.ActivityMainBinding
 import com.example.lib_util.down.DownloadGO
 import com.example.lib_util.down.DownloadStatus
 import com.example.lib_util.log.LogUtil
@@ -32,12 +34,13 @@ import java.io.File
 class MainActivity:BaseActivity() {
     var img:ImageView?=null
     override fun initView(savedInstanceState: Bundle?) {
-        setContentLayout(R.layout.activity_main)
+       var rootView=ActivityMainBinding.inflate(LayoutInflater.from(context))
+        setContentLayout(rootView.root)
         setLeftBack()
         setTitle("首页")
-         img=findViewById<ImageView>(R.id.imgView)
-//        img.setUrl("https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png")
-        var button=findViewById<Button>(R.id.button)
+        img=rootView.imgView
+//      img.setUrl("https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png")
+        var button=rootView.button
         button.setOnClickListener {
             download(this)
         }
@@ -55,14 +58,14 @@ class MainActivity:BaseActivity() {
 //
 //                }
 //            })
+
    lifecycleScope.launch {
        flow<String> {
            emit("1")
        }.flowOn(Dispatchers.IO)
            .onCompletion {  }
            .onStart {  }
-           .collect {
-       }
+           .collect {}
    }
     }
 
