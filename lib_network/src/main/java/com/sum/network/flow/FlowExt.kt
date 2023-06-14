@@ -37,7 +37,7 @@ suspend fun <T> requestFlow(
     val flow = requestFlowResponse(errorBlock, requestCall, showLoading)
     //7.调用collect获取emit()回调的结果，就是请求最后的结果
     flow.collect {
-        data = it?.data
+        data = it?.successdata
     }
     return data
 }
@@ -62,7 +62,7 @@ suspend fun <T> requestFlowResponse(
         }
 
         if (response?.isFailed() == true) {
-            throw ApiException(response.errorCode, response.errorMsg)
+            throw ApiException(response.code, response.msg)
         }
         //2.发送网络请求结果回调
         emit(response)

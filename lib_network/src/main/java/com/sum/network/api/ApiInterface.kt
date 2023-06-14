@@ -14,10 +14,13 @@ import retrofit2.http.Query
  * @desc   API接口类
  */
 interface ApiInterface {
-//    /**
-//     * 首页轮播图
-//     */
-//    @GET("/banner/json")
-//    suspend fun getHomeBanner(): BaseResponse<MutableList<Banner>>?
+    /**
+     * 首页轮播图
+     */
+    @FormUrlEncoded
+    @POST("/api/v5/jfgfc/*")
+    suspend fun getHome(     @Field("appkey") appkey: String,
+                             @Field("device_number") device_number: String,
+    ): BaseResponse<String>?
 
 }

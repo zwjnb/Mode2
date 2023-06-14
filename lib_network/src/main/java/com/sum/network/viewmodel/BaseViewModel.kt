@@ -84,9 +84,9 @@ open class BaseViewModel : ViewModel() {
             } ?: return null
 
             if (response.isFailed()) {
-                throw ApiException(response.errorCode, response.errorMsg)
+                throw ApiException(response.code, response.msg)
             }
-            return response.data
+            return response.successdata
         } catch (e: Exception) {
             e.printStackTrace()
             LogUtil.e(e)

@@ -1,5 +1,6 @@
 package com.sum.network.repository
 
+import com.example.lib_util.log.LogUtil
 import com.sum.network.error.ApiException
 import com.sum.network.response.BaseResponse
 import kotlinx.coroutines.Dispatchers
@@ -24,8 +25,8 @@ open class BaseRepository {
         } ?: return null
 
         if (response.isFailed()) {
-            throw ApiException(response.errorCode, response.errorMsg)
+            throw ApiException(response.code, response.msg)
         }
-        return response.data
+        return response.successdata
     }
 }
