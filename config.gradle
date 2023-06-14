@@ -54,6 +54,7 @@ ext{
             //协程的
             coroutinesCore:'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9',
             coroutinesAndroid: 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9',
+            liveDataKtx       : 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1',
             //协程的（在viewmodel 使用的）
             viewmodel: 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0',
             // 权限请求框架：https://github.com/getActivity/XXPermissions
@@ -67,7 +68,8 @@ ext{
             ucrop: 'io.github.lucksiege:ucrop:v3.11.1',
             // 自定义相机 (按需引入)
             camerax: 'io.github.lucksiege:camerax:v3.11.1',
-
+            //数据存储
+            mmkv: 'com.tencent:mmkv:1.2.15',
     ]
 
 }

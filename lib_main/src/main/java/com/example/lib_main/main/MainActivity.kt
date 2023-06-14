@@ -44,7 +44,7 @@ class MainActivity:BaseActivity() {
         button.setOnClickListener {
             download(this)
         }
-        AppToastMgr.ToastShortCenter(context,"55555555555555")
+        AppToastMgr.ToastShortCenter("55555555555555")
 //        PictureSelector.create(this)
 //            .openGallery(SelectMimeType.ofImage())
 //            .setImageEngine(GlideEngine.createGlideEngine())

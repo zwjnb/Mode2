@@ -32,7 +32,7 @@ public class AppExit2Back {
 	    if (isExit == false) {
 	        isExit = true;
 	        //信息提示
-	        AppToastMgr.ToastShortCenter(context, context.getResources().getString(R.string.sys_exit_tip));
+	        AppToastMgr.ToastShortCenter( context.getResources().getString(R.string.sys_exit_tip));
 	        //创建定时器
 	        tExit = new Timer();
 	        //如果2秒钟内没有按下返回键，则启动定时器取消掉刚才执行的任务

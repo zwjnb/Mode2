@@ -1,6 +1,7 @@
 package com.jingewenku.abrahamcaijin.commonutil;
 
 
+import android.app.Application;
 import android.content.Context;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -32,21 +33,24 @@ public class AppToastMgr {
 	private static Toast toast;
 	static TextView toastText;
 	static View view;
+	static Application mContext;
+public static void init(Application context){
+	mContext=context;
 
+}
 	/**
 	 * 屏幕中心位置长时间显示Toast
 	 *
-	 * @param context
 	 * @param message
 	 */
-	public static void ToastLongCenter(Context context, String message) {
-		if (context != null) {
+	public static void ToastLongCenter(String message) {
+		if (mContext != null) {
 			if (toast==null) {
-				toast = new Toast(context);
+				toast = new Toast(mContext);
 			}
 
 			if (view==null){
-				view = LayoutInflater.from(context).inflate(R.layout.layout_toast, null);
+				view = LayoutInflater.from(mContext).inflate(R.layout.layout_toast, null);
 				toastText=view.findViewById(R.id.tv_toast_message);
 				toastText.setText(message);
 			}else{
@@ -64,17 +68,16 @@ public class AppToastMgr {
 	/**
 	 * 屏幕中心位置短时间显示Toast
 	 *
-	 * @param context
 	 * @param message
 	 */
-	public static void ToastShortCenter(Context context, String message) {
-		if (context != null) {
+	public static void ToastShortCenter(String message) {
+		if (mContext != null) {
 			if (toast==null) {
-				toast = new Toast(context);
+				toast = new Toast(mContext);
 			}
 
 			if (view==null){
-				view = LayoutInflater.from(context).inflate(R.layout.layout_toast, null);
+				view = LayoutInflater.from(mContext).inflate(R.layout.layout_toast, null);
 				toastText=view.findViewById(R.id.tv_toast_message);
 				toastText.setText(message);
 			}else{
@@ -93,17 +96,16 @@ public class AppToastMgr {
 	/**
 	 * 屏幕底部位置短时间显示Toast
 	 *
-	 * @param context
 	 * @param message
 	 */
-	public static void ToastShortBottom(Context context, String message) {
-		if (context != null) {
+	public static void ToastShortBottom(String message) {
+		if (mContext != null) {
 			if (toast==null) {
-				toast = new Toast(context);
+				toast = new Toast(mContext);
 			}
 
 			if (view==null){
-				view = LayoutInflater.from(context).inflate(R.layout.layout_toast, null);
+				view = LayoutInflater.from(mContext).inflate(R.layout.layout_toast, null);
 				toastText=view.findViewById(R.id.tv_toast_message);
 				toastText.setText(message);
 			}else{
@@ -121,17 +123,16 @@ public class AppToastMgr {
 	/**
 	 * 屏幕底部位置长时间显示Toast
 	 *
-	 * @param context
 	 * @param message
 	 */
-	public static void ToastLongBottom(Context context, String message) {
-		if (context != null) {
+	public static void ToastLongBottom(String message) {
+		if (mContext != null) {
 			if (toast==null) {
-				toast = new Toast(context);
+				toast = new Toast(mContext);
 			}
 
 			if (view==null){
-				view = LayoutInflater.from(context).inflate(R.layout.layout_toast, null);
+				view = LayoutInflater.from(mContext).inflate(R.layout.layout_toast, null);
 				toastText=view.findViewById(R.id.tv_toast_message);
 				toastText.setText(message);
 			}else{

@@ -2,7 +2,6 @@ plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
 }
-//-------------------------上传到jcenter-----------------------
 
 android {
     compileSdkVersion 33

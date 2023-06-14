@@ -70,4 +70,6 @@ dependencies {
     implementation project(path: ':lib_util')
     implementation project(path: ':lib_glide')
     implementation project(path: ':lib_CommonUtil')
+    implementation project(path: ':lib_network')
+
 }
