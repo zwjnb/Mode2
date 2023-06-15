@@ -70,6 +70,10 @@ ext{
             camerax: 'io.github.lucksiege:camerax:v3.11.1',
             //数据存储
             mmkv: 'com.tencent:mmkv:1.2.15',
+            //AES/ECB/PKCS7Padding加密和解密,Java目前没有PKCS7Padding填充方式，需要在maven中添加bouncycastle依赖：
+            // https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk15on
+            bouncycastle: 'org.bouncycastle:bcprov-jdk15on:1.70',
+
     ]
 
 }
