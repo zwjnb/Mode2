@@ -49,34 +49,39 @@ class MainActivity : BaseActivity() {
         mWebView = rootView.webView
         initWebView(bean!!.webview_set, bean!!.wapurl)
         imageBack!!.visibility= View.INVISIBLE
-        var dialog= Dialog(context)
-        dialog.setCancelable(false);
-        val window: Window = dialog.window!!
-        if (window != null) {
-            window.setGravity(Gravity.CENTER)
-            window.setBackgroundDrawableResource(R.color.transparency)
-            window.setLayout(
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            )
-        }
-       var view= LayoutInflater.from(context).inflate(R.layout.dialog_update,null)
-       var down= view.findViewById<TextView>(R.id.down)
-        down.setOnClickListener {
-            val intent: Intent
-            try {
-                intent = Intent.parseUri(bean!!.downurl, Intent.URI_INTENT_SCHEME)
-                intent.addCategory(Intent.CATEGORY_BROWSABLE)
-                intent.component = null
-                context.startActivity(intent)
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }
-        dialog.setContentView(view)
-        dialog.show()
+      UpdateDialog(bean!!.version)
     }
-
+fun UpdateDialog(version:Int){
+    if (version<=1){
+        return
+    }
+    var dialog= Dialog(context)
+    dialog.setCancelable(false);
+    val window: Window = dialog.window!!
+    if (window != null) {
+        window.setGravity(Gravity.CENTER)
+        window.setBackgroundDrawableResource(R.color.transparency)
+        window.setLayout(
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+    }
+    var view= LayoutInflater.from(context).inflate(R.layout.dialog_update,null)
+    var down= view.findViewById<TextView>(R.id.down)
+    down.setOnClickListener {
+        val intent: Intent
+        try {
+            intent = Intent.parseUri(bean!!.downurl, Intent.URI_INTENT_SCHEME)
+            intent.addCategory(Intent.CATEGORY_BROWSABLE)
+            intent.component = null
+            context.startActivity(intent)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+    dialog.setContentView(view)
+    dialog.show()
+}
     @SuppressLint("JavascriptInterface")
     fun initWebView(wetSet: String, url: String) {
         mWebView!!.loadUrl(url);

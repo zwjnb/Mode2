@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
-        android:text="app更新"
+        android:text="appUpdate"
         android:gravity="center"
         android:textColor="@color/black"
         app:layout_constraintLeft_toLeftOf="parent"
