@@ -35,7 +35,6 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:visibility="gone"
-        android:src="@mipmap/appstore_icon_right_help_text"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"></ImageView>
     <View
