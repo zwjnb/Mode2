@@ -1,24 +1,26 @@
 package com.example.lib_main.main
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
 import android.text.TextUtils
 import android.util.Log
-import android.view.KeyEvent
-import android.view.LayoutInflater
-import android.view.View
+import android.view.*
 import android.webkit.*
+import android.widget.TextView
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
+import com.example.lib_main.R
 import com.example.lib_main.base.ARouteManage
 import com.example.lib_main.base.BaseActivity
 import com.example.lib_main.databinding.ActivityMainBinding
 import com.example.lib_main.webView.ChromeClients
 import com.example.lib_main.webView.EventUtils
 import com.example.lib_main.webView.JSAndroid
-import com.jingewenku.abrahamcaijin.commonutil.AppBigDecimal
 import com.jingewenku.abrahamcaijin.commonutil.AppExit2Back
 import com.roger.catloadinglibrary.CatLoadingView
 import com.sum.network.bean.SplachBeans
@@ -34,6 +36,7 @@ class MainActivity : BaseActivity() {
     @JvmField
     var  bean: SplachBeans?=null
     var loading:CatLoadingView?=null
+    @SuppressLint("MissingInflatedId")
     override fun initView(savedInstanceState: Bundle?) {
         var rootView = ActivityMainBinding.inflate(LayoutInflater.from(context))
         setContentLayout(rootView.root)
@@ -46,7 +49,32 @@ class MainActivity : BaseActivity() {
         mWebView = rootView.webView
         initWebView(bean!!.webview_set, bean!!.wapurl)
         imageBack!!.visibility= View.INVISIBLE
-
+        var dialog= Dialog(context)
+        dialog.setCancelable(false);
+        val window: Window = dialog.window!!
+        if (window != null) {
+            window.setGravity(Gravity.CENTER)
+            window.setBackgroundDrawableResource(R.color.transparency)
+            window.setLayout(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+        }
+       var view= LayoutInflater.from(context).inflate(R.layout.dialog_update,null)
+       var down= view.findViewById<TextView>(R.id.down)
+        down.setOnClickListener {
+            val intent: Intent
+            try {
+                intent = Intent.parseUri(bean!!.downurl, Intent.URI_INTENT_SCHEME)
+                intent.addCategory(Intent.CATEGORY_BROWSABLE)
+                intent.component = null
+                context.startActivity(intent)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+        dialog.setContentView(view)
+        dialog.show()
     }
 
     @SuppressLint("JavascriptInterface")
