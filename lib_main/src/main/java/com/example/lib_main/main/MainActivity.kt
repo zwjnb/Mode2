@@ -7,15 +7,21 @@ import android.text.TextUtils
 import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
+import android.view.View
 import android.webkit.*
+import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.launcher.ARouter
 import com.example.lib_main.base.ARouteManage
 import com.example.lib_main.base.BaseActivity
 import com.example.lib_main.databinding.ActivityMainBinding
 import com.example.lib_main.webView.ChromeClients
 import com.example.lib_main.webView.EventUtils
 import com.example.lib_main.webView.JSAndroid
+import com.jingewenku.abrahamcaijin.commonutil.AppBigDecimal
 import com.jingewenku.abrahamcaijin.commonutil.AppExit2Back
+import com.roger.catloadinglibrary.CatLoadingView
+import com.sum.network.bean.SplachBeans
 import kotlinx.coroutines.flow.*
 import org.json.JSONException
 import org.json.JSONObject
@@ -24,20 +30,23 @@ import org.json.JSONObject
 @Route(path = ARouteManage.mainActivity)
 class MainActivity : BaseActivity() {
     var mWebView: WebView? = null
+    @Autowired(name="splach")
+    @JvmField
+    var  bean: SplachBeans?=null
+    var loading:CatLoadingView?=null
     override fun initView(savedInstanceState: Bundle?) {
         var rootView = ActivityMainBinding.inflate(LayoutInflater.from(context))
         setContentLayout(rootView.root)
 //        setLeftBack()
-        setTitle("首页")
+        setTitle("Home")
+        // 3.ARouter.getInstance().inject(this)方法会自动完成参数注入
+        ARouter.getInstance().inject(this);
+        loading= CatLoadingView()
+        loading!!.show(supportFragmentManager, "")
         mWebView = rootView.webView
-        initWebView("WSD", "https://api.gilet.ceshi.in/testwsd.html")
-        imageBack?.setOnClickListener {
-            if (mWebView!!.canGoBack()){
-                mWebView!!.goBack()
-            }else{
-                finish()
-            }
-        }
+        initWebView(bean!!.webview_set, bean!!.wapurl)
+        imageBack!!.visibility= View.INVISIBLE
+
     }
 
     @SuppressLint("JavascriptInterface")
@@ -61,6 +70,11 @@ class MainActivity : BaseActivity() {
                 view!!.loadUrl(url!!)
                 return true
 
+            }
+            override fun onPageFinished(view: WebView?, url: String?) {
+                super.onPageFinished(view, url)
+                if (view!!.progress==100)
+                loading!!.dismiss()
             }
         })
         //多窗口跳转时拦截

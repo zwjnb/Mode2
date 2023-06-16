@@ -36,7 +36,16 @@ public class WebActivity extends BaseActivity {
         setLeftBack();
         setTitle("");
         String url = getIntent().getStringExtra("url");
-
+      getImageBack().setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View view) {
+              if (mWebView.canGoBack()){
+                  mWebView.goBack();
+              }else{
+                  finish();
+              }
+          }
+      });
         int isWsd = getIntent().getIntExtra("isWsd", 0);
 
         mWebView = rootView.webView;

@@ -32,23 +32,11 @@ android {
     }
 
 }
-
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation rootProject.androidx.coreKtx
     implementation rootProject.androidx.appcompat
     implementation rootProject.androidx.material
 
-    implementation rootProject.androidx.retrofit2
-    implementation rootProject.androidx.retrofit2Gson
-    implementation rootProject.androidx.loggingInterceptor
-
-    implementation rootProject.androidx.mmkv
-
-    implementation rootProject.androidx.gson
-    implementation rootProject.androidx.liveDataKtx
-    implementation rootProject.androidx.viewmodel
-    implementation rootProject.androidx.ARounter
-    kapt rootProject.androidx.ARountercompiler
-    implementation project(path: ':lib_CommonUtil')
 }
+
