@@ -1,6 +1,7 @@
 package com.example.lib_util.log
 
 import android.util.Log
+import com.sum.framework.helper.SumAppHelper
 
 class LogUtil {
     companion object{
@@ -12,6 +13,7 @@ class LogUtil {
         }
 
         fun d(tag:String,content:Any){
+            if (SumAppHelper.isDebug())
                 Log.d(tag, content as String)
         }
 
@@ -21,6 +23,7 @@ class LogUtil {
         }
 
         fun e(tag:String,content:Any){
+            if (SumAppHelper.isDebug())
                 Log.e(tag, content as String)
         }
 

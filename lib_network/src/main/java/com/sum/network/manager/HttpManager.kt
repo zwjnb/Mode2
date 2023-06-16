@@ -54,7 +54,9 @@ object HttpManager {
 
         //日志拦截器
         val logInterceptor = HttpLoggingInterceptor { message: String ->
-            Log.i("okhttp", "data:$message")
+            if (SumAppHelper.isDebug()) {
+                Log.i("okhttp", "data:$message")
+            }
         }
         if (SumAppHelper.isDebug()) {
             logInterceptor.level = HttpLoggingInterceptor.Level.BODY

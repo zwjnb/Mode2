@@ -19,3 +19,34 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+### 移除所有android.util.Log相关的代码
+-assumenosideeffects class android.util.Log {
+  public static int v(...);
+  public static int i(...);
+  public static int w(...);
+  public static int d(...);
+  public static int e(...);
+}
+
+  -assumenosideeffects class java.io.PrintStream {
+
+  public void println(...);
+
+  public void print(...);
+
+  }
+
+  -keep class com.hhh.test.* {*;}
+
+  -keepclassmembers class **.R$* {public static *;}
+
+  #gilde混淆
+  -keep public class * implements com.bumptech.glide.module.GlideModule
+  -keep class * extends com.bumptech.glide.module.AppGlideModule {
+   <init>(...);
+  }
+  -keep public enum com.bumptech.glide.load.ImageHeaderParser$** {
+    **[] $VALUES;
+    public *;
+  }
+  -keep class com.bumptech.glide.load.data.** {* ;}

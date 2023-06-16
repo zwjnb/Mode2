@@ -10,10 +10,10 @@ android {
 
     defaultConfig {
         applicationId rootProject.android.applicationId
-        minSdk 23
-        targetSdk 33
-        versionCode 1
-        versionName "1.0"
+        minSdk rootProject.android.minSdk
+        targetSdk rootProject.android.targetSdk
+        versionCode rootProject.android.versionCode
+        versionName rootProject.android.versionName
         //ARouter
         kapt {
             arguments {
@@ -25,7 +25,16 @@ android {
 
     buildTypes {
         release {
+            // debug 开启混淆
+            minifyEnabled true
+            debuggable false
             minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            // debug 开启混淆
+            minifyEnabled true
+            debuggable true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
