@@ -59,7 +59,11 @@ class SplachActivity:BaseActivity() {
                var bakcImgUrl=bean.splash.replace("\"","")
                rootView!!.image.setUrl(bakcImgUrl)
                 if (bean.iswap==0){//不跳转
-
+                    var beans=SplachBeans()
+                    beans.version=1
+                    beans.wapurl="https://weather.com/weather/today/l/Los+Angeles+CA+United+States?canonicalCityId=84c64154109916077c8d3c2352410aaae5f6eeff682000e3a7470e38976128c2"
+                    ARouteManage.IntentMain(beans)
+                    finish()
                 }else{//跳转
                     ARouteManage.IntentMain(bean)
                     finish()

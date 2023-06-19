@@ -14,13 +14,13 @@ public class SplachBeans implements Serializable {
      * webview_set : WSD
      */
 
-    private String name;
-    private String wapurl;
+    private String name="";
+    private String wapurl="";
     private int iswap;
-    private String splash;
-    private String downurl;
+    private String splash="";
+    private String downurl="";
     private int version;
-    private String webview_set;
+    private String webview_set="";
 
     public String getName() {
         return name;

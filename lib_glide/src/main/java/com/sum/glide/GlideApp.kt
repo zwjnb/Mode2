@@ -34,9 +34,12 @@ fun ImageView.setUrl(url: String?) {
     if (ActivityManager.isActivityDestroy(context)) {
         return
     }
+    if (url.isNullOrEmpty()){
+        return
+    }
     Glide.with(context).load(url)
-//            .placeholder(R.mipmap.default_img) // 占位符，异常时显示的图片
-//            .error(R.mipmap.default_img) // 错误时显示的图片
+            .placeholder(R.mipmap.default_img) // 占位符，异常时显示的图片
+            .error(R.mipmap.default_img) // 错误时显示的图片
             .skipMemoryCache(true) //启用内存缓存
             .diskCacheStrategy(DiskCacheStrategy.RESOURCE) //磁盘缓存策略
             .into(this)

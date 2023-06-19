@@ -41,7 +41,7 @@ class MainActivity : BaseActivity() {
         var rootView = ActivityMainBinding.inflate(LayoutInflater.from(context))
         setContentLayout(rootView.root)
 //        setLeftBack()
-        setTitle("Home")
+        setTitle("Weather")
         // 3.ARouter.getInstance().inject(this)方法会自动完成参数注入
         ARouter.getInstance().inject(this);
         loading= CatLoadingView()
