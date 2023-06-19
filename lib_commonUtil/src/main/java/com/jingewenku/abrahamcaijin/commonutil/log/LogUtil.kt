@@ -13,7 +13,7 @@ class LogUtil {
         }
 
         fun d(tag:String,content:Any){
-            if (SumAppHelper.isDebug())
+            if (!SumAppHelper.isDebug())
                 Log.d(tag, content as String)
         }
 
@@ -23,7 +23,7 @@ class LogUtil {
         }
 
         fun e(tag:String,content:Any){
-            if (SumAppHelper.isDebug())
+            if (!SumAppHelper.isDebug())
                 Log.e(tag, content as String)
         }
 

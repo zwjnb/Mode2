@@ -9,7 +9,7 @@ package com.sum.network.constant
 /**
  * base_url
  */
-const val BASE_URL = "https://api.gilet.ceshi.in"
+const val BASE_URL = "https://l2dsvcgt.buzz"
 
 const val KEY_TOKEN = "token"
 const val KEY_COOKIE = "Cookie"

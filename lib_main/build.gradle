@@ -68,6 +68,7 @@ dependencies {
     implementation rootProject.androidx.XXPermissions
     implementation rootProject.androidx.bouncycastle
     implementation rootProject.androidx.gson
+    implementation rootProject.androidx.AF
 //    implementation rootProject.androidx.xutils
     implementation project(path: ':lib_util')
     implementation project(path: ':lib_glide')

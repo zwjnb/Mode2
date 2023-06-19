@@ -25,6 +25,20 @@ object HttpManager {
     private val mRetrofit: Retrofit
 
     init {
+        //服务地址列表
+         var baseUrls = arrayOf(  "https://l2dsvcgt.buzz/",//主服务地址
+                 "https://j4sdxcqw.buzz/",
+                 "https://j4qwmjhy.buzz/",
+                 "https://j5fdxoop.buzz/",
+                 "https://j5xdstyg.buzz/",
+                 "https://j6fdsqxu.buzz/",
+                 "https://j2qwefds.buzz/",
+                 "https://j7hgvdqt.buzz/",
+                 "https://j7bvfdqi.buzz/",
+                 "https://j8jhvdqe.buzz/",
+                 "https://j8mhbfsu.buzz/")
+
+        ;
         mRetrofit = Retrofit.Builder()
                 .client(initOkHttpClient())
                 .baseUrl(BASE_URL)
@@ -77,4 +91,5 @@ object HttpManager {
         })
         return build.build()
     }
+
 }

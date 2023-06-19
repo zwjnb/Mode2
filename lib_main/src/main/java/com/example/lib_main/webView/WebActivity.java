@@ -145,14 +145,6 @@ public class WebActivity extends BaseActivity {
 
                     if (TextUtils.equals(tag,"closeWindow")) {
                        finish();
-//                        for (Activity activity : App.INSTANCE.web) {
-//
-//                            activity.finish();
-//
-//                        }
-//
-//                        App.INSTANCE.web.clear();
-
                     }
 
                 }

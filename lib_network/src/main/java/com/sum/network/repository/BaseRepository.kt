@@ -23,7 +23,6 @@ open class BaseRepository {
                 requestCall()
             }
         } ?: return null
-
         if (response.isFailed()) {
             throw ApiException(response.code, response.msg)
         }

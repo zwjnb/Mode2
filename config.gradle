@@ -1,6 +1,6 @@
 ext{
     android=[
-            applicationId:"com.manganr.lv",
+            applicationId:"com.shaolinsaven.soen",
             minSdk:23,
             targetSdk:33,
             versionCode:1,
@@ -73,6 +73,9 @@ ext{
             //AES/ECB/PKCS7Padding加密和解密,Java目前没有PKCS7Padding填充方式，需要在maven中添加bouncycastle依赖：
             // https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk15on
             bouncycastle: 'org.bouncycastle:bcprov-jdk15on:1.70',
+            //埋点
+            AF: 'com.appsflyer:af-android-sdk:6.9.0',
+
     ]
 
 }

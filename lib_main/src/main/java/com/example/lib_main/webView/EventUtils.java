@@ -10,6 +10,9 @@ import android.webkit.WebSettings;
 
 import androidx.annotation.NonNull;
 
+import com.appsflyer.AFInAppEventParameterName;
+import com.appsflyer.AppsFlyerLib;
+import com.appsflyer.attribution.AppsFlyerRequestListener;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -163,11 +166,11 @@ public class EventUtils {
 
             eventValues = new HashMap<>();
 
-//            eventValues.put(AFInAppEventParameterName.CONTENT_ID, tag);
-//
-//            eventValues.put(AFInAppEventParameterName.CONTENT_TYPE, tag);
-//
-//            eventValues.put(AFInAppEventParameterName.CONTENT, value);
+            eventValues.put(AFInAppEventParameterName.CONTENT_ID, tag);
+
+            eventValues.put(AFInAppEventParameterName.CONTENT_TYPE, tag);
+
+            eventValues.put(AFInAppEventParameterName.CONTENT, value);
 
             try {
 
@@ -175,9 +178,9 @@ public class EventUtils {
 
                 String amount = jsonObject.optString("amount");
 
-//                eventValues.put(AFInAppEventParameterName.REVENUE, amount);
-//
-//                eventValues.put(AFInAppEventParameterName.CURRENCY, "PHP");
+                eventValues.put(AFInAppEventParameterName.REVENUE, amount);
+
+                eventValues.put(AFInAppEventParameterName.CURRENCY, "PHP");
 
                 Log.i(TAG, "logEvent: amount = " + amount);
 
@@ -190,28 +193,28 @@ public class EventUtils {
         }
 
 ////数据上传
-//
-//        AppsFlyerLib.getInstance().logEvent(app,
-//
-//                tag, eventValues, new AppsFlyerRequestListener() {
-//
-//                    @Override
-//
-//                    public void onSuccess() {
-//
-//                        Log.i(TAG, "AppsFlyerLib onSuccess: ");
-//
-//                    }
-//
-//                    @Override
-//
-//                    public void onError(int i, @NonNull String s) {
-//
-//                        Log.i(TAG, "AppsFlyerLib onError: " + s);
-//
-//                    }
-//
-//                });
+
+        AppsFlyerLib.getInstance().logEvent(app,
+
+                tag, eventValues, new AppsFlyerRequestListener() {
+
+                    @Override
+
+                    public void onSuccess() {
+
+                        Log.i(TAG, "AppsFlyerLib onSuccess: ");
+
+                    }
+
+                    @Override
+
+                    public void onError(int i, @NonNull String s) {
+
+                        Log.i(TAG, "AppsFlyerLib onError: " + s);
+
+                    }
+
+                });
 
     }
 

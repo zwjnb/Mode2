@@ -38,16 +38,13 @@ class SplachActivity:BaseActivity() {
         var button= rootView!!.button
         lifecycleScope.launch {
             flow<String> {
-               var json= loginRepository.Home("e4b3dc7b23652624118d9c769dfb5625","UhqqumgfpiF1qg8vnI")
+               var json= loginRepository.Home("cb45f568168184269d29d007b7f3847c","EcAntUwQ6TTwPySo")
                 if (json != null) {
                     emit(json)
                 }
             }
             .onStart {
-                loading.show(
-                supportFragmentManager,
-                ""
-            )
+                loading.show(supportFragmentManager, "")
             }
             .flowOn(Dispatchers.Main)
             .onEach {
@@ -55,8 +52,8 @@ class SplachActivity:BaseActivity() {
             }.onCompletion {
                     loading.dismiss()
             }.collect {
-               var json= EncryptUtils.aes256ECBPkcs7PaddingDecrypt(it,"jaix8WnfqRFpQlLk")
-                    LogUtil.e("=============>"+json)
+               var json= EncryptUtils.aes256ECBPkcs7PaddingDecrypt(it,"EcAntUwQ6TTwPySo")
+                LogUtil.e("=============>"+json)
                var gson=Gson()
                var bean= gson.fromJson(json, object : TypeToken<SplachBeans>() {}.getType()) as SplachBeans
                var bakcImgUrl=bean.splash.replace("\"","")

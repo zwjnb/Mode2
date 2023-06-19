@@ -41,3 +41,4 @@
   public void print(...);
 
   }
+  -keep class com.appsflyer.** { *; }
