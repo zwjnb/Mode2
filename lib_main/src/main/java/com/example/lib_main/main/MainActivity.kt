@@ -150,7 +150,7 @@ fun UpdateDialog(version:Int){
         if (webset.equals("WSD")) {
             return 1
         } else {
-            return -1
+            return 2
         }
     }
 
