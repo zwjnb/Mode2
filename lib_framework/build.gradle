@@ -5,11 +5,11 @@ plugins {
 
 android {
     namespace 'com.sum.framework'
-    compileSdk 33
+    compileSdk rootProject.android.targetSdk
 
     defaultConfig {
-        minSdk 24
-        targetSdk 33
+        minSdk rootProject.android.minSdk
+        targetSdk rootProject.android.targetSdk
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"

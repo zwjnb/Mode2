@@ -27,34 +27,23 @@ class SplachActivity:BaseActivity() {
 
     override fun initView(savedInstanceState: Bundle?) {
       var rootView=  ActivitySplachBinding.inflate(LayoutInflater.from(context))
+
         setContentLayout(rootView.root)
         setToolbar(false)
         setFitsSystemWindows(false)
         window.setBackgroundDrawable(null)
 
      var button=rootView.button
-        lifecycleScope.launch {
-            flow<String> {
-               var json= loginRepository.Home("e4b3dc7b23652624118d9c769dfb5625","UhqqumgfpiF1qg8vnI")
-                if (json != null) {
-                    emit(json)
-                }
-            }.onEach {
-             AppToastMgr.ToastShortCenter(it)
-            }.collect {
-                LogUtil.e("===========>"+it)
-            }
-        }
-//     //倒计时
-//     DownTimer.downTimer(1, start = {
-//         button.setText("1秒")
-//     }, completion = {
-//         button.setText("0秒")
-//         ARouteManage.IntentMain()
-//         finish()
-//     }, each = {
-//         button.setText("${it}秒")
-//     }, lifecycleScope )
+     //倒计时
+     DownTimer.downTimer(1, start = {
+         button.setText("1秒")
+     }, completion = {
+         button.setText("0秒")
+         ARouteManage.IntentMain()
+         finish()
+     }, each = {
+         button.setText("${it}秒")
+     }, lifecycleScope )
     }
 
     override fun onNewIntent(intent: Intent?) {

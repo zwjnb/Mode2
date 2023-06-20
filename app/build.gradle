@@ -6,14 +6,14 @@ plugins {
 
 android {
     namespace rootProject.android.applicationId
-    compileSdk 33
+    compileSdk rootProject.android.targetSdk
 
     defaultConfig {
         applicationId rootProject.android.applicationId
-        minSdk 24
-        targetSdk 33
-        versionCode 1
-        versionName "1.0"
+        minSdk rootProject.android.minSdk
+        targetSdk rootProject.android.targetSdk
+        versionCode rootProject.android.versionCode
+        versionName rootProject.android.versionName
         //ARouter
         kapt {
             arguments {

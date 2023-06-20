@@ -4,12 +4,12 @@ plugins {
 }
 
 android {
-    namespace 'com.example.lib_util'
-    compileSdk 33
+    namespace 'com.example.lib_utils'
+    compileSdk rootProject.android.targetSdk
 
     defaultConfig {
-        minSdk 24
-        targetSdk 33
+        minSdk rootProject.android.minSdk
+        targetSdk rootProject.android.targetSdk
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"

@@ -1,5 +1,6 @@
 package com.example.lib_main.main
 
+import android.app.Activity
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
@@ -18,6 +19,7 @@ import com.example.lib_main.databinding.ActivityMainBinding
 import com.example.lib_util.down.DownloadGO
 import com.example.lib_util.down.DownloadStatus
 import com.example.lib_util.log.LogUtil
+import com.jingewenku.abrahamcaijin.commonutil.ActivityLifecycleCallbacks.SimpleActivityLifecycleCallbacks
 import com.jingewenku.abrahamcaijin.commonutil.AppExit2Back
 import com.jingewenku.abrahamcaijin.commonutil.AppToastMgr
 import com.luck.picture.lib.config.PictureMimeType
@@ -44,7 +46,28 @@ class MainActivity:BaseActivity() {
         button.setOnClickListener {
             download(this)
         }
-        AppToastMgr.ToastShortCenter("55555555555555")
+      var life=  object :SimpleActivityLifecycleCallbacks(){
+          override fun onActivityStarted(p0: Activity) {
+          }
+
+          override fun onActivitySaveInstanceState(p0: Activity, p1: Bundle) {
+          }
+
+          override fun onActivityCreated(p0: Activity, p1: Bundle?) {
+          }
+
+          override fun onActivityResumed(p0: Activity) {
+              super.onActivityResumed(p0)
+              AppToastMgr.ToastShortCenter("onActivityResumed")
+          }
+
+          override fun onActivityDestroyed(p0: Activity) {
+              super.onActivityDestroyed(p0)
+              AppToastMgr.ToastShortCenter("onActivityDestroyed")
+          }
+
+      }
+
 //        PictureSelector.create(this)
 //            .openGallery(SelectMimeType.ofImage())
 //            .setImageEngine(GlideEngine.createGlideEngine())
