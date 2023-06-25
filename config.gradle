@@ -1,6 +1,6 @@
 ext{
     android=[
-            applicationId:"com.ceshi.demo",
+            applicationId:"com.ceshi.demo1",
             minSdk:24,
             targetSdk:33,
             versionCode:1,
