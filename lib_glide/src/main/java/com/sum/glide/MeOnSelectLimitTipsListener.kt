@@ -16,6 +16,10 @@ class MeOnSelectLimitTipsListener : OnSelectLimitTipsListener {
         config: SelectorConfig,
         limitType: Int,
     ): Boolean {
+        if (limitType == SelectLimitType.SELECT_MAX_SELECT_LIMIT) {
+            ToastUtils.showToast(context, "图片最大不能超过" + config.maxSelectNum + "张")
+            return true
+        }else
         if (limitType == SelectLimitType.SELECT_MIN_SELECT_LIMIT) {
             ToastUtils.showToast(context, "图片最少不能低于" + config.minSelectNum + "张")
             return true

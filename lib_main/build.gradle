@@ -46,8 +46,7 @@ dependencies {
     implementation rootProject.androidx.appcompat
     implementation rootProject.androidx.material
     implementation rootProject.androidx.constraintlayout
-    implementation rootProject.androidx.navigationFragmentKtx
-    implementation rootProject.androidx.navigationUiKtx
+    
 //    implementation rootProject.androidx.progressmanager
     implementation rootProject.androidx.ARounter
     implementation rootProject.androidx.immersionbar
@@ -61,7 +60,7 @@ dependencies {
     implementation rootProject.androidx.pictureselector
     implementation rootProject.androidx.compress
     implementation rootProject.androidx.ucrop
-    implementation rootProject.androidx.camerax
+//    implementation rootProject.androidx.camerax
     testImplementation rootProject.androidx.junit
     androidTestImplementation rootProject.androidx.extjunit
     androidTestImplementation rootProject.androidx.espressoCore

@@ -7,6 +7,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.view.Gravity
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.widget.ImageView
@@ -18,21 +19,29 @@ import com.example.lib_main.databinding.ActivityMainBinding
 import com.example.lib_util.down.DownloadGO
 import com.example.lib_util.down.DownloadStatus
 import com.example.lib_util.log.LogUtil
+import com.hjq.permissions.OnPermissionCallback
 import com.hjq.permissions.Permission
+import com.hjq.permissions.XXPermissions
 import com.jingewenku.abrahamcaijin.commonutil.AppExit2Back
+import com.jingewenku.abrahamcaijin.commonutil.Dialog.AppDialogUtils
+import com.jingewenku.abrahamcaijin.commonutil.File.FileWriterUtils
 import com.luck.picture.lib.basic.PictureSelector
 import com.luck.picture.lib.config.PictureMimeType
 import com.luck.picture.lib.config.SelectMimeType
 import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.interfaces.OnResultCallbackListener
 import com.luck.picture.lib.utils.MediaUtils
+import com.luck.picture.lib.utils.ToastUtils
 import com.sum.glide.GlideEngine
 import com.sum.glide.MeOnSelectLimitTipsListener
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import java.io.BufferedWriter
 import java.io.File
+import java.io.FileOutputStream
+import java.io.FileWriter
 
 
 @Route(path=ARouteManage.mainActivity)
@@ -47,87 +56,55 @@ class MainActivity:BaseActivity() {
 //        img!!.setUrl("https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png")
         var button=rootView.button
         button.setOnClickListener {
-//            download(this)
-//            val maxNumPhotosAndVideos = 10
-//            val intent = Intent(MediaStore.ACTION_PICK_IMAGES)
-//            intent.putExtra(MediaStore.EXTRA_PICK_IMAGES_MAX, maxNumPhotosAndVideos)
-//            startActivityForResult(intent, 2)
-            val intent = Intent(Intent.ACTION_GET_CONTENT)
-            intent.type = "image/*" // 相片类
-
-            intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true) //多选
-
-            intent.addCategory(Intent.CATEGORY_OPENABLE)
-            startActivityForResult(intent, 2)
+            download(this)
         }
-       var path= Environment.getExternalStorageDirectory()
-        var absolutePath=   getExternalFilesDir("room")!!.absolutePath
-        LogUtil.e("==================>"+absolutePath)
-        val STORAGE = arrayOf(
-            Permission.READ_MEDIA_IMAGES,
-            Permission.READ_MEDIA_VIDEO,
-            Permission.READ_MEDIA_AUDIO,
-        )
-//      XXPermissions.with(context).permission(STORAGE).request(object:
-//          OnPermissionCallback{
-//          override fun onGranted(permissions: MutableList<String>, allGranted: Boolean) {
-//              if (!allGranted) {
-//                  ToastUtils.showToast(context,"获取部分权限成功，但部分权限未正常授予");
-//                  return;
-//              }
-//              lifecycleScope.launch {
-//                  var file=File(path,"12345.txt")
-//                  if (!file.isDirectory)
-//                      file.createNewFile()
-//                  try {
-//                      var buffer=  BufferedWriter(FileWriter(file,true))
-//                      buffer.write("var file=File(path,\"1234.txt\")\n" +
-//                              "              if (!file.isDirectory)\n" +
-//                              "                  file.createNewFile()\n" +
-//                              "              try {\n" +
-//                              "                  var buffer=  BufferedWriter(FileWriter(file,false))\n" +
-//                              "                  buffer.write(\"1234\")\n" +
-//                              "//                  BufferedReader(FileReader(file,false))\n" +
-//                              "                  LogUtil.e(\"==================>成功\")\n" +
-//                              "              }catch (e:java.lang.Exception){\n" +
-//                              "                  e.printStackTrace()\n" +
-//                              "                  LogUtil.e(\"==================>失败\")\n" +
-//                              "              }")
-////                  BufferedReader(FileReader(file,false))
-//                      LogUtil.e("==================>成功")
-//                  }catch (e:java.lang.Exception){
-//                      e.printStackTrace()
-//                      LogUtil.e("==================>失败")
-//                  }
-//              }
-//              ToastUtils.showToast(context,"获取录音和日历权限成功");
-//          }
-////
-//          override fun onDenied(permissions: MutableList<String>, doNotAskAgain: Boolean) {
-//              if (doNotAskAgain) {
-//                  ToastUtils.showToast(context,"被永久拒绝授权，请手动授予录音和日历权限");
-//                  // 如果是被永久拒绝就跳转到应用权限系统设置页面
-//                  XXPermissions.startPermissionActivity(context, permissions);
-//              } else {
-//                  ToastUtils.showToast(context,"获取录音和日历权限失败");
-//              }
-//          }
-//      })
+        rootView.fileSave.setOnClickListener {
+            var content="具体改了什么呢？其实就是两个API： TelecomManager 类中的 getLine1Number() 方法 TelecomManager 类中的 getMsisdn() 方法\n" +
+                    "\n" +
+                    "也就是当用到这两个API的时候，原来的READ_PHONE_STATE权限不管用了，需要READ_PHONE_NUMBERS权限才行。\n" +
+                    "\n" +
+                    "下面具体说说，targetSdkVersion修改到30，然后运行一个获取电话号码的程序："
+            //文件存储
+            FileWriterUtils.FileWriter(context,content,"文档.txt")
 
-        PictureSelector.create(this)
-            .openGallery(SelectMimeType.ofImage())
-            .setImageEngine(GlideEngine.createGlideEngine())
-            .isDisplayCamera(false)//是否显示相机按钮
-//            .setCropEngine(ImageFileCropEngine(false))//图片剪裁
-            .setSelectLimitTipsListener( MeOnSelectLimitTipsListener())//拦截自定义提示
-            .forResult(object : OnResultCallbackListener<LocalMedia?> {
-                override fun onResult(result: ArrayList<LocalMedia?>?) {
-                    analyticalSelectResults(result)
-                }
-                override fun onCancel() {
+//            var path= Environment.getExternalStorageDirectory()//根目录
+//            var absolutePath=   getExternalFilesDir("room")!!.absolutePath//应用目录
+//            LogUtil.e("==================>"+absolutePath)
+//            val STORAGE = arrayOf(
+////            Permission.READ_EXTERNAL_STORAGE,
+////            Permission.WRITE_EXTERNAL_STORAGE,
+//                Permission.MANAGE_EXTERNAL_STORAGE
+//            )
+        }
+        rootView.selectImage.setOnClickListener {
+            PictureSelector.create(this)
+                .openGallery(SelectMimeType.ofImage())
+                .setImageEngine(GlideEngine.createGlideEngine())
+                .isDisplayCamera(false)//是否显示相机按钮
+                .isWithSelectVideoImage(false)//是否同时选择视频、图片返回
+                .setMinSelectNum(1)//最小选择数量
+                .setMaxSelectNum(5)//最大选择数量
+//              .setCropEngine(ImageFileCropEngine(false))//图片剪裁
+                .setSelectLimitTipsListener( MeOnSelectLimitTipsListener())//拦截自定义提示
+                .forResult(object : OnResultCallbackListener<LocalMedia?> {
+                    override fun onResult(result: ArrayList<LocalMedia?>?) {
+                        analyticalSelectResults(result)
+                    }
+                    override fun onCancel() {
 
-                }
-            })
+                    }
+                })
+//            val intent = Intent(Intent.ACTION_GET_CONTENT)
+//            intent.type = "image/*" // 相片类
+//            intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true) //多选
+//
+//            intent.addCategory(Intent.CATEGORY_OPENABLE)
+//            startActivityForResult(intent, 2)
+        }
+        rootView.layoutDialog.setOnClickListener {
+            AppDialogUtils.dialog(context,"提示语测试")
+        }
+
 
         flow<String> {
             emit("1")

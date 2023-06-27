@@ -4,4 +4,5 @@
     <color name="white">#ffffffff</color>
     <color name="gray">#e0e0e0</color>
     <color name="transparency">#00000000</color>
+    <color name="color_2356">#2356FF</color>
 </resources>

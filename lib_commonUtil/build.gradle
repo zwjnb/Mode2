@@ -34,8 +34,8 @@ dependencies {
     implementation rootProject.androidx.appcompat
     implementation rootProject.androidx.material
     implementation rootProject.androidx.constraintlayout
-    implementation rootProject.androidx.navigationFragmentKtx
-    implementation rootProject.androidx.navigationUiKtx
+    
+    
     testImplementation rootProject.androidx.junit
     androidTestImplementation rootProject.androidx.extjunit
     androidTestImplementation rootProject.androidx.espressoCore
