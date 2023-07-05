@@ -2,6 +2,7 @@ package com.jingewenku.abrahamcaijin.commonutil.Dialog
 
 import android.app.Dialog
 import android.content.Context
+import android.content.IntentSender.OnFinished
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -14,9 +15,9 @@ class AppDialogUtils {
          *
          */
         fun dialog(context: Context,content:String){
-            dialog(context,content,Gravity.CENTER)
+            dialog(context,content,Gravity.CENTER, onFinish = {}, onCancle = {})
         }
-        fun dialog(context: Context,content:String,gravity: Int){
+        fun dialog(context: Context,content:String,gravity: Int,onFinish:() ->Unit,onCancle:() ->Unit){
             var dialog=Dialog(context)
             var view= LayoutInflater.from(context).inflate(R.layout.layout_dialog,null)
             var dilogSure= view.findViewById<TextView>(R.id.dilog_sure)
@@ -39,9 +40,11 @@ class AppDialogUtils {
             dialog.show()
             dilogSure.setOnClickListener {
                 dialog.dismiss()
+                onFinish()
             }
             dilogCancle.setOnClickListener {
                 dialog.dismiss()
+                onCancle()
             }
         }
     }

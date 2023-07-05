@@ -66,6 +66,15 @@ dependencies {
     androidTestImplementation rootProject.androidx.espressoCore
     implementation rootProject.androidx.XXPermissions
 //    implementation rootProject.androidx.xutils
+    //cameraX测试验证
+    implementation rootProject.androidx.cameraCore
+    implementation rootProject.androidx.camera2
+    implementation rootProject.androidx.cameraLifecycle
+    implementation rootProject.androidx.cameraVideo
+    implementation rootProject.androidx.cameraView
+    implementation rootProject.androidx.cameraVision
+    implementation rootProject.androidx.cameraExtensions
+
     implementation project(path: ':lib_util')
     implementation project(path: ':lib_glide')
     implementation project(path: ':lib_CommonUtil')

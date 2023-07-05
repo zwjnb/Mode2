@@ -2,7 +2,7 @@ ext{
     android=[
             applicationId:"com.ceshi.demo1",
             minSdk:24,
-            targetSdk:30,
+            targetSdk:33,
             versionCode:1,
             versionName:"1.0",
     ]
@@ -11,7 +11,8 @@ ext{
             targetCompatibility:JavaVersion.VERSION_1_8
     ]
     dependVersion = [
-            coreKtx:'1.7.0'
+            coreKtx:'1.7.0',
+            camerax_version : "1.2.0-alpha01"
             ]
     androidx=[
             coreKtx: "androidx.core:core-ktx:1.5.0",
@@ -70,6 +71,22 @@ ext{
             camerax: 'io.github.lucksiege:camerax:v3.11.1',
             //数据存储
             mmkv: 'com.tencent:mmkv:1.2.15',
+            //CameraX相机使用
+            // CameraX core library using the camera2 implementation
+            // The following line is optional, as the core library is included indirectly by camera-camera2
+            cameraCore: "androidx.camera:camera-core:${dependVersion.camerax_version}",
+            camera2: "androidx.camera:camera-camera2:${dependVersion.camerax_version}",
+            // If you want to additionally use the CameraX Lifecycle library
+            cameraLifecycle: "androidx.camera:camera-lifecycle:${dependVersion.camerax_version}",
+            // If you want to additionally use the CameraX VideoCapture library
+            cameraVideo: "androidx.camera:camera-video:${dependVersion.camerax_version}",
+            // If you want to additionally use the CameraX View class
+            cameraView: "androidx.camera:camera-view:${dependVersion.camerax_version}",
+            // If you want to additionally add CameraX ML Kit Vision Integration
+            cameraVision: "androidx.camera:camera-mlkit-vision:${dependVersion.camerax_version}",
+            // If you want to additionally use the CameraX Extensions library
+            cameraExtensions: "androidx.camera:camera-extensions:${dependVersion.camerax_version}",
+
     ]
 
 }

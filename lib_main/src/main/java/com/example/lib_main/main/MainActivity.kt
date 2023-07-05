@@ -34,10 +34,10 @@ import com.luck.picture.lib.utils.MediaUtils
 import com.luck.picture.lib.utils.ToastUtils
 import com.sum.glide.GlideEngine
 import com.sum.glide.MeOnSelectLimitTipsListener
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.InternalCoroutinesApi
+import com.sum.glide.setUrl
+import com.sum.network.flow.isNull
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
 import java.io.BufferedWriter
 import java.io.File
 import java.io.FileOutputStream
@@ -59,22 +59,9 @@ class MainActivity:BaseActivity() {
             download(this)
         }
         rootView.fileSave.setOnClickListener {
-            var content="具体改了什么呢？其实就是两个API： TelecomManager 类中的 getLine1Number() 方法 TelecomManager 类中的 getMsisdn() 方法\n" +
-                    "\n" +
-                    "也就是当用到这两个API的时候，原来的READ_PHONE_STATE权限不管用了，需要READ_PHONE_NUMBERS权限才行。\n" +
-                    "\n" +
-                    "下面具体说说，targetSdkVersion修改到30，然后运行一个获取电话号码的程序："
+            var content="具体改了什么呢？其实就是两个API： TelecomManager 类中的 getLine1Number() 方法 TelecomManager 类中的 getMsisdn() 方法\n"
             //文件存储
             FileWriterUtils.FileWriter(context,content,"文档.txt")
-
-//            var path= Environment.getExternalStorageDirectory()//根目录
-//            var absolutePath=   getExternalFilesDir("room")!!.absolutePath//应用目录
-//            LogUtil.e("==================>"+absolutePath)
-//            val STORAGE = arrayOf(
-////            Permission.READ_EXTERNAL_STORAGE,
-////            Permission.WRITE_EXTERNAL_STORAGE,
-//                Permission.MANAGE_EXTERNAL_STORAGE
-//            )
         }
         rootView.selectImage.setOnClickListener {
             PictureSelector.create(this)
@@ -102,16 +89,76 @@ class MainActivity:BaseActivity() {
 //            startActivityForResult(intent, 2)
         }
         rootView.layoutDialog.setOnClickListener {
-            AppDialogUtils.dialog(context,"提示语测试")
+            AppDialogUtils.dialog(context,"提示语测试",Gravity.CENTER,
+               onFinish = {
+                ToastUtils.showToast(context,"确定")
+            }, onCancle = {
+                ToastUtils.showToast(context,"取消")
+            })
+        }
+        rootView.permissions.setOnClickListener {
+            AppDialogUtils.dialog(context,"当前功能需要用到存储权限，请授权",Gravity.BOTTOM,
+                onFinish = {
+                    XXPermissions.with(context)
+                        .permission(Permission.Group.STORAGE)
+                        .request(object :OnPermissionCallback{
+                            override fun onGranted(permissions: MutableList<String>, allGranted: Boolean, ) {
+                                if (!allGranted) {
+                                    ToastUtils.showToast(context,"获取部分权限成功，但部分权限未正常授予");
+                                    return;
+                                }
+                                ToastUtils.showToast(context,"授权成功!");
+
+                            }
+
+                            override fun onDenied(permissions: MutableList<String>, doNotAskAgain: Boolean) {
+                                super.onDenied(permissions, doNotAskAgain)
+                                if (doNotAskAgain) {
+                                    ToastUtils.showToast(context,"被永久拒绝授权，请手动授予权限");
+                                    // 如果是被永久拒绝就跳转到应用权限系统设置页面
+                                    XXPermissions.startPermissionActivity(context, permissions);
+                                } else {
+                                    ToastUtils.showToast(context,"授权失败!");
+                                }
+                            }
+                        })
+                }, onCancle = {
+                    ToastUtils.showToast(context,"取消")
+                })
+        }
+        rootView.camera.setOnClickListener {
+            ARouteManage.IntentCamera()
         }
 
+       GlobalScope.launch {
+           flow<String> {
+               withContext(Dispatchers.IO){
+                   delay(2000)
+                   LogUtil.e("时间:"+System.currentTimeMillis()/1000)
+                   withTimeout(5 * 1000) {
+                       delay(6000)
+//                    ToastUtils.showToast(context,"超时")
+                   }
 
-        flow<String> {
-            emit("1")
-        }.flowOn(Dispatchers.IO)
-            .onCompletion {  }
-            .onStart {  }
-            .launchIn(lifecycleScope)
+               }
+               LogUtil.e("时间:"+System.currentTimeMillis()/1000)
+               emit("1")
+           }.flowOn(Dispatchers.IO)
+               .onCompletion {
+                   if (it!!.isNull(it)){
+                       LogUtil.e("时间:onCompletion")
+                   }else{
+                       ToastUtils.showToast(context,"请求超时异常")
+                   }
+
+//
+               }
+               .onStart {  }
+               .collect {
+                   LogUtil.e("时间:"+it)
+               }
+       }
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
